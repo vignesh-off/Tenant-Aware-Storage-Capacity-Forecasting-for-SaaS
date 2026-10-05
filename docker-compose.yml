@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+  data-gen:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tcf-data-gen
+    environment:
+      - DATABASE_URL=sqlite:////app/data/saas_capacity.db
+    volumes:
+      - ./data:/app/data
+    command: >
+      bash -c "python scripts/generate_data.py && python scripts/run_backtest.py"
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tcf-api
+    depends_on:
+      data-gen:
+        condition: service_completed_successfully
+    environment:
+      - DATABASE_URL=sqlite:////app/data/saas_capacity.db
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    volumes:
+      - ./data:/app/data
+      - ./docs:/app/docs
+    ports:
+      - "8000:8000"
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tcf-ui
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      - API_URL=http://api:8000
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    volumes:
+      - ./data:/app/data
+      - ./docs:/app/docs
+    ports:
+      - "8501:8501"
+    command: ["streamlit", "run", "ui/streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]

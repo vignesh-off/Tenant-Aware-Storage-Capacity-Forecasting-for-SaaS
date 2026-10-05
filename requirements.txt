@@ -1,0 +1,30 @@
+# Core Web & API Framework
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+python-multipart>=0.0.9
+python-dotenv>=1.0.1
+requests>=2.31.0
+httpx>=0.27.0
+
+# Database & ORM
+SQLAlchemy>=2.0.28
+
+# Data Science & Machine Learning
+numpy>=1.26.4
+pandas>=2.2.1
+scikit-learn>=1.4.1.post1
+statsmodels>=0.14.1
+scipy>=1.12.0
+
+# Visualization & Interactive UI
+streamlit>=1.32.0
+matplotlib>=3.8.3
+seaborn>=0.13.2
+altair>=5.2.0
+
+# Experimentation & Testing
+jupyter>=1.0.0
+notebook>=7.1.1
+pytest>=8.1.1
+pytest-asyncio>=0.23.5
