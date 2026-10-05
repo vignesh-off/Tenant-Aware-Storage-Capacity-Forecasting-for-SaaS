@@ -1,21 +1,21 @@
 {
-  "run_id": "backtest_20261001_064624",
-  "split_date": "2026-08-08",
+  "run_id": "backtest_20261005_094340",
+  "split_date": "2026-08-12",
   "baseline_mae": 9.6,
-  "proposed_mae": 6.3,
+  "proposed_mae": 7.8,
   "baseline_median_ae": 0.0,
   "proposed_median_ae": 0.0,
   "baseline_within_14d_pct": 89.4,
   "proposed_within_14d_pct": 83.0,
   "proposed_coverage_pct": 100.0,
-  "baseline_false_urgent_rate": 0.0,
-  "proposed_false_urgent_rate": 0.0,
+  "baseline_false_urgent_rate": 20.0,
+  "proposed_false_urgent_rate": 100.0,
   "comparison_table": [
     {
       "metric": "MAE exhaustion date (days)",
       "baseline": "9.6d",
       "target": "<=21d",
-      "measured": "6.3d"
+      "measured": "7.8d"
     },
     {
       "metric": "Median AE (days)",
@@ -25,9 +25,9 @@
     },
     {
       "metric": "% within +/-7 days",
-      "baseline": "87.2%",
+      "baseline": "89.4%",
       "target": ">=60%",
-      "measured": "80.9%"
+      "measured": "72.3%"
     },
     {
       "metric": "% within +/-14 days",
@@ -39,7 +39,7 @@
       "metric": "% within +/-30 days",
       "baseline": "89.4%",
       "target": ">=90%",
-      "measured": "93.6%"
+      "measured": "89.4%"
     },
     {
       "metric": "P10-P90 coverage",
@@ -49,9 +49,9 @@
     },
     {
       "metric": "False urgent rate",
-      "baseline": "0.0%",
+      "baseline": "20.0%",
       "target": "<=10%",
-      "measured": "0.0%"
+      "measured": "100.0%"
     }
   ]
 }
